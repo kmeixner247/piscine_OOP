@@ -6,13 +6,12 @@ const int& Bank::Account::getId() const
 	return _id;
 }
 
-
 const unsigned int& Bank::Account::getValue() const 
 {
 	return _value;
 }
 
-const unsigned int& Bank::Account::getLoaned() const
+const unsigned int& Bank::Account::getLoans() const
 {
-	return _loaned;
+	return _loans;
 }
