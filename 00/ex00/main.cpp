@@ -1,4 +1,3 @@
-#include "Account.hpp"
 #include "Bank.hpp"
 #include <iostream>
 int main()
