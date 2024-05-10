@@ -3,10 +3,12 @@
 #include <iostream>
 int main()
 {
-	Bank::Account bob;
+	Bank bank;
 
-	std::cout << bob << std::endl;
-	bob.setId(5);
-	bob.setValue(1234);
-	std::cout << bob << std::endl;
+	bank.createAccount(0);
+	bank.depositToAccount(0, 1000000);
+	bank.createAccount(1);
+	bank.depositToAccount(1, 25000);
+	bank.giveLoan(1, 1250);
+	std::cout << bank;
 } 
