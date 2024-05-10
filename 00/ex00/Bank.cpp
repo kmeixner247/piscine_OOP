@@ -157,10 +157,10 @@ std::ostream& operator<<(std::ostream& p_os, const Bank::Account& p_account)
 
 std::ostream& operator<<(std::ostream& p_os, const Bank& p_bank)
 {
-	p_os << "Bank informations : " << std::endl;
+	p_os << "Bank information : " << std::endl;
 	p_os << "Liquidity : " << p_bank._liquidity << std::endl;
-	for (auto &clientAccount : p_bank._clientAccounts)
-		p_os << clientAccount.second << std::endl;
+	for (std::map<int, Bank::Account*>::const_iterator it = p_bank._clientAccounts.begin(); it != p_bank._clientAccounts.end(); it++)
+		p_os << it->second << std::endl;
 	return p_os;
 }
 
