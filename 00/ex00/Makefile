@@ -1,4 +1,4 @@
-NAME		=	divideandconque
+NAME		=	divideandconquer
 
 SRCS		=	main.cpp Account.cpp Bank.cpp
 
