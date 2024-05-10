@@ -9,18 +9,18 @@
 struct Bank
 {
 private:
-class Account
+struct Account
 	{
 		friend Bank;
 	private:
 		int _id;
 		unsigned int _value;
-		unsigned int _loaned;
+		unsigned int _loans;
 
 	public:
 		const int& getId() const;
 		const unsigned int& getValue() const;
-		const unsigned int& getLoaned() const;
+		const unsigned int& getLoans() const;
 	};
 
 
@@ -38,11 +38,12 @@ public:
 	Account* operator[](int id);
 	void createAccount(int id);
 	void deleteAccount(int id);
-	void modifyAccount(int id, int newId, unsigned int newValue, unsigned int newLoaned);
+	void modifyAccount(int id, int newId, unsigned int newValue, unsigned int newLoans);
 	void depositToAccount(int id, unsigned int value);
 	void withdrawFromAccount(int id, unsigned int value);
 	void giveLoan(int id, unsigned int value);
 	void reclaimLoan(int id, unsigned int value);
+	
 	class DuplicateIdException : public std::exception
 	{
 	private:
@@ -51,6 +52,7 @@ public:
 		DuplicateIdException(int id) : _id(id) {}
 		const char *what() const throw();
 	};
+	
 	class IdNotFoundException : public std::exception
 	{
 	private:
@@ -59,11 +61,13 @@ public:
 		IdNotFoundException(int id) : _id(id) {}
 		const char *what() const throw();
 	};
+	
 	class InsufficientFundsException: public std::exception
 	{
 	public:
 		const char *what() const throw();
 	};
 
+	friend std::ostream& operator<<(std::ostream& p_os, const Account& p_account);
 	friend std::ostream& operator<<(std::ostream& p_os, const Bank& p_bank);
 };

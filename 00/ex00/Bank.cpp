@@ -63,7 +63,7 @@ void Bank::deleteAccount(int id)
 	_clientAccounts.erase(it);
 }
 
-void Bank::modifyAccount(int id, int newId, unsigned int newValue, unsigned int newLoaned)
+void Bank::modifyAccount(int id, int newId, unsigned int newValue, unsigned int newLoans)
 {
 	std::map<int, Account*>::iterator it = _clientAccounts.find(id);
 	if (it == _clientAccounts.end())
@@ -77,7 +77,7 @@ void Bank::modifyAccount(int id, int newId, unsigned int newValue, unsigned int 
 	Account* account = it->second;
 	account->_id = newId;
 	account->_value = newValue;
-	account->_loaned = newLoaned;
+	account->_loans = newLoans;
 }
 
 void Bank::depositToAccount(int id, unsigned int value)
@@ -124,7 +124,7 @@ void Bank::giveLoan(int id, unsigned int value)
 	}
 	Account* account = it->second;
 	account->_value += value;
-	account->_loaned += value;
+	account->_loans += value;
 	_liquidity -= value;
 }
 
@@ -136,17 +136,23 @@ void Bank::reclaimLoan(int id, unsigned int value)
 		throw IdNotFoundException(id);
 	}
 	Account* account = it->second;
-	if (value < account->_loaned)
+	if (value < account->_loans)
 	{
-		value = account->_loaned;
+		value = account->_loans;
 	}
 	if (value > account->_value)
 	{
 		throw InsufficientFundsException();
 	}
 	account->_value -= value;
-	account->_loaned -= value;
+	account->_loans -= value;
 	_liquidity += value;
+}
+
+std::ostream& operator<<(std::ostream& p_os, const Bank::Account& p_account)
+{
+	p_os << "[id: " << p_account.getId() << "] - [balance: " << p_account.getValue() << "] - [loans: " << p_account.getLoans();
+	return p_os;
 }
 
 std::ostream& operator<<(std::ostream& p_os, const Bank& p_bank)
