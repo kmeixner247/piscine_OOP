@@ -24,14 +24,14 @@ struct Account
 	};
 
 
-	int _liquidity;
+	unsigned int _liquidity;
 	std::map<int, Account*> _clientAccounts;
 
 public:
 	Bank();
-	int& getLiquidity();
-	const int& getLiquidity() const;
-	void setLiquidity(const int& liquidity);
+	unsigned int& getLiquidity();
+	const unsigned int& getLiquidity() const;
+	void setLiquidity(const unsigned int& liquidity);
 	std::map<int, Account*>& getClientAccounts();
 	const std::map<int, Account*>& getClientAccounts() const;
 	void setClientAccounts(std::map<int, Account*> clientAccounts);

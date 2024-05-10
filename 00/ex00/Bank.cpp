@@ -4,17 +4,17 @@ Bank::Bank() : _liquidity(0)
 {
 }
 
-int& Bank::getLiquidity()
+unsigned int& Bank::getLiquidity()
 {
 	return _liquidity;
 }
 
-const int& Bank::getLiquidity() const
+const unsigned int& Bank::getLiquidity() const
 {
 	return _liquidity;
 }
 
-void Bank::setLiquidity(const int& liquidity)
+void Bank::setLiquidity(const unsigned int& liquidity)
 {
 	_liquidity = liquidity;
 }
