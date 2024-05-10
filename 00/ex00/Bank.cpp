@@ -151,7 +151,7 @@ void Bank::reclaimLoan(int id, unsigned int value)
 
 std::ostream& operator<<(std::ostream& p_os, const Bank::Account& p_account)
 {
-	p_os << "[id: " << p_account.getId() << "] - [balance: " << p_account.getValue() << "] - [loans: " << p_account.getLoans();
+	p_os << "[id: " << p_account.getId() << "] - [balance: " << p_account.getValue() << "] - [loans: " << p_account.getLoans() << "]";
 	return p_os;
 }
 
@@ -160,21 +160,21 @@ std::ostream& operator<<(std::ostream& p_os, const Bank& p_bank)
 	p_os << "Bank information : " << std::endl;
 	p_os << "Liquidity : " << p_bank._liquidity << std::endl;
 	for (std::map<int, Bank::Account*>::const_iterator it = p_bank._clientAccounts.begin(); it != p_bank._clientAccounts.end(); it++)
-		p_os << it->second << std::endl;
+		p_os << *it->second << std::endl;
 	return p_os;
 }
 
 const char* Bank::DuplicateIdException::what() const throw()
 {
 	std::stringstream ss;
-	ss << "ID " << _id << "already exists!";
+	ss << "ID " << _id << " already exists!";
 	return ss.str().c_str();
 }
 
 const char* Bank::IdNotFoundException::what() const throw()
 {
 	std::stringstream ss;
-	ss << "ID " << _id << "not found!";
+	ss << "ID " << _id << " not found!";
 	return ss.str().c_str();
 }
 

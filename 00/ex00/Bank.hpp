@@ -8,8 +8,7 @@
 
 struct Bank
 {
-private:
-struct Account
+	struct Account
 	{
 		friend Bank;
 	private:
@@ -23,6 +22,7 @@ struct Account
 		const unsigned int& getLoans() const;
 	};
 
+private:
 
 	unsigned int _liquidity;
 	std::map<int, Account*> _clientAccounts;
